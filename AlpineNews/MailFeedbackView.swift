@@ -47,6 +47,8 @@ struct MailFeedbackView: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailFeedbackView>) -> MFMailComposeViewController {
+        Logger.trackEvent("User wants to provide feedback")
+
         let vc = MFMailComposeViewController()
         vc.mailComposeDelegate = context.coordinator
         vc.setToRecipients(["eidingermarco@gmail.com"])

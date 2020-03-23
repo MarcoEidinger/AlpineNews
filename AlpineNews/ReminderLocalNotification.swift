@@ -57,6 +57,8 @@ struct ReminderLocalNotification {
         UserDefaults.standard.set(true, forKey: "ReminderScheduled")
         UserDefaults.standard.set(triggerDaily.hour, forKey: "ReminderScheduledHour")
         UserDefaults.standard.set(triggerDaily.minute, forKey: "ReminderScheduledMinute")
+
+        Logger.trackEvent("Reminder scheduled for \(date.debugDescription)")
     }
 
     func deleteScheduledReminder() {

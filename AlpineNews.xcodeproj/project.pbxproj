@@ -28,6 +28,11 @@
 		8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */; };
 		8A0099E02427E14A0081E0EF /* FeedbackSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */; };
 		8A0099E22427E48D0081E0EF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099E12427E48D0081E0EF /* Logger.swift */; };
+		8A9266FF24291B66003B47E5 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FA24291B66003B47E5 /* AppCenterCrashes.framework */; };
+		8A92670024291B66003B47E5 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9266FB24291B66003B47E5 /* CHANGELOG.md */; };
+		8A92670124291B66003B47E5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9266FC24291B66003B47E5 /* README.md */; };
+		8A92670224291B66003B47E5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */; };
+		8A92670324291B66003B47E5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FE24291B66003B47E5 /* AppCenter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +79,11 @@
 		8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailFeedbackView.swift; sourceTree = "<group>"; };
 		8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSettingsView.swift; sourceTree = "<group>"; };
 		8A0099E12427E48D0081E0EF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		8A9266FA24291B66003B47E5 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
+		8A9266FB24291B66003B47E5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		8A9266FC24291B66003B47E5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
+		8A9266FE24291B66003B47E5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0099DC2427DEFF0081E0EF /* Diagnostics in Frameworks */,
+				8A92670324291B66003B47E5 /* AppCenter.framework in Frameworks */,
+				8A92670224291B66003B47E5 /* AppCenterAnalytics.framework in Frameworks */,
+				8A9266FF24291B66003B47E5 /* AppCenterCrashes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +138,7 @@
 		8A0099972425A71F0081E0EF /* AlpineNews */ = {
 			isa = PBXGroup;
 			children = (
+				8A9266F824291B18003B47E5 /* Vendor */,
 				8A0099982425A71F0081E0EF /* AppDelegate.swift */,
 				8A00999A2425A71F0081E0EF /* SceneDelegate.swift */,
 				8A00999C2425A71F0081E0EF /* ContentView.swift */,
@@ -172,6 +186,26 @@
 				8A0099BC2425A7210081E0EF /* Info.plist */,
 			);
 			path = AlpineNewsUITests;
+			sourceTree = "<group>";
+		};
+		8A9266F824291B18003B47E5 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				8A9266F924291B66003B47E5 /* MSAppCenter */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		8A9266F924291B66003B47E5 /* MSAppCenter */ = {
+			isa = PBXGroup;
+			children = (
+				8A9266FA24291B66003B47E5 /* AppCenterCrashes.framework */,
+				8A9266FB24291B66003B47E5 /* CHANGELOG.md */,
+				8A9266FC24291B66003B47E5 /* README.md */,
+				8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */,
+				8A9266FE24291B66003B47E5 /* AppCenter.framework */,
+			);
+			path = MSAppCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +320,9 @@
 			files = (
 				8A0099A52425A7210081E0EF /* LaunchScreen.storyboard in Resources */,
 				8A0099A22425A7210081E0EF /* Preview Assets.xcassets in Resources */,
+				8A92670124291B66003B47E5 /* README.md in Resources */,
 				8A00999F2425A7210081E0EF /* Assets.xcassets in Resources */,
+				8A92670024291B66003B47E5 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +530,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AlpineNews/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V66CC3AN6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AlpineNews/Vendor/MSAppCenter",
+				);
 				INFOPLIST_FILE = AlpineNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,6 +554,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AlpineNews/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V66CC3AN6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AlpineNews/Vendor/MSAppCenter",
+				);
 				INFOPLIST_FILE = AlpineNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

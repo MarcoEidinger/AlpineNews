@@ -8,6 +8,7 @@
 
 import Foundation
 import Diagnostics
+import AppCenterAnalytics
 
 struct Logger {
 
@@ -17,5 +18,9 @@ struct Logger {
 
     static func log(error: Error) {
         DiagnosticsLogger.log(error: error)
+    }
+
+    static func trackEvent(_ eventName: String) {
+        MSAnalytics.trackEvent(eventName)
     }
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 import Diagnostics
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             Logger.log(message: "Failed to setup the Diagnostics Logger")
         }
+
+        MSAppCenter.start("90a47855-7520-4d31-beb5-8ddb76fba052", withServices:[
+          MSAnalytics.self,
+          MSCrashes.self
+        ])
 
         return true
     }
