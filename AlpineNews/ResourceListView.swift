@@ -31,6 +31,7 @@ struct ResourceListView: View {
                 .onDelete(perform: delete)
             }
             .navigationBarTitle(title)
+            .navigationBarItems(trailing: EditButton())
         }
     }
 
