@@ -9,12 +9,42 @@
 import SwiftUI
 import WebKit
 
+class WKNavigationDelegateImp: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        Logger.log(error: error)
+    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        Logger.log(error: error)
+    }
+}
+
 struct SimpleWebView : UIViewRepresentable {
 
     let url: URL
+    var delegate = WKNavigationDelegateImp()
+
+    static var cache = [URL: WKWebView]()
+    static var cacheTime = [URL: Date]()
 
     func makeUIView(context: Context) -> WKWebView  {
-        return WKWebView()
+        if let webView = SimpleWebView.cache[url] {
+            if let cacheDate = SimpleWebView.cacheTime[url] {
+                let diffTime = Date().timeIntervalSince(cacheDate)
+                if diffTime < 600 { // cache good upt to 10 min
+                    return webView
+                }
+                SimpleWebView.cache.removeValue(forKey: url)
+                SimpleWebView.cacheTime.removeValue(forKey: url)
+            }
+        }
+
+        let webView = WKWebView()
+        webView.navigationDelegate = delegate
+
+        SimpleWebView.cache[url] = webView
+        SimpleWebView.cacheTime[url] = Date()
+        
+        return webView
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {

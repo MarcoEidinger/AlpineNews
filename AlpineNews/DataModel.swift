@@ -92,20 +92,16 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
             let decoder = JSONDecoder()
             return try decoder.decode([Resource].self, from: originalData)
         } catch {
-            print("Unable to Encode Note (\(error))")
+            Logger.log(message: "Unable to load resources from disk (\(error))")
             return []
         }
     }
     
     func save(_ items: [Resource], for category: ResourceCategory) {
         do {
-            // Create JSON Encoder
             let encoder = JSONEncoder()
-            
-            // Encode Note
             let data = try encoder.encode(items)
-            
-            // Write/Set Data
+
             UserDefaults.standard.set(data, forKey: category.rawValue)
             
             switch category {
@@ -116,7 +112,7 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
             }
             
         } catch {
-            print("Unable to Encode Note (\(error))")
+            Logger.log(message: "Unable to save resources (\(error))")
         }
     }
 }

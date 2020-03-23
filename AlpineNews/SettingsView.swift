@@ -15,6 +15,7 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 ReminderSettingsView()
+                FeedbackSettingsView()
                 Section {
                     Button(action: {
                         self.dataModel.reset()

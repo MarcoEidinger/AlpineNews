@@ -55,6 +55,11 @@ struct ReminderSettingsView: View {
                     )
                 }
             }
+            .onAppear() {
+                self.isReminderOn = ReminderLocalNotification.currentReminder().0
+
+                self.selectedDate = Calendar.current.date(bySettingHour: ReminderLocalNotification.currentReminder().1.hour!, minute: ReminderLocalNotification.currentReminder().1.minute!, second: 0, of: Date())!
+        }
     }
 }
 

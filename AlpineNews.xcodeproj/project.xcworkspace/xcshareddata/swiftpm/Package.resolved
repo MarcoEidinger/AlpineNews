@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Diagnostics",
+        "repositoryURL": "https://github.com/WeTransfer/Diagnostics",
+        "state": {
+          "branch": null,
+          "revision": "3dab2c3bf7dd7b24179274467020dd7822016bbe",
+          "version": "1.6.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

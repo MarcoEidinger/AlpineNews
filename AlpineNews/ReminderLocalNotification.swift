@@ -19,7 +19,7 @@ struct ReminderLocalNotification {
         notificationCenter.requestAuthorization(options: options) {
             (didAllow, error) in
             if !didAllow {
-                print("User has declined notifications")
+                Logger.log(message: "User has declined notifications")
             }
         }
 
@@ -39,24 +39,48 @@ struct ReminderLocalNotification {
         content.body = "Time to check for news about Swift, iOS and Apple 😀 👍"
         content.sound = UNNotificationSound.default
 
-//        let date = Date()
         let triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
 
-//        // show this notification five seconds from now
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        // choose a random identifier
         let request = UNNotificationRequest(identifier: reminderNotificationID, content: content, trigger: trigger)
 
         notificationCenter.add(request) { (error) in
             if let error = error {
-                print("Error \(error.localizedDescription)")
+                Logger.log(message: "Error when scheduling reminder \(error.localizedDescription)")
+                
+                UserDefaults.standard.set(false, forKey: "ReminderScheduled")
+                UserDefaults.standard.removeObject(forKey: "ReminderScheduledHour")
+                UserDefaults.standard.removeObject(forKey: "ReminderScheduledMinute")
             }
         }
+
+        UserDefaults.standard.set(true, forKey: "ReminderScheduled")
+        UserDefaults.standard.set(triggerDaily.hour, forKey: "ReminderScheduledHour")
+        UserDefaults.standard.set(triggerDaily.minute, forKey: "ReminderScheduledMinute")
     }
 
     func deleteScheduledReminder() {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminderNotificationID])
+
+        UserDefaults.standard.set(false, forKey: "ReminderScheduled")
+        UserDefaults.standard.removeObject(forKey: "ReminderScheduledHour")
+        UserDefaults.standard.removeObject(forKey: "ReminderScheduledMinute")
+    }
+
+    static func currentReminder() -> (Bool, DateComponents) {
+        let isScheduled = UserDefaults.standard.bool(forKey: "ReminderScheduled")
+
+        if isScheduled {
+            let hour = UserDefaults.standard.integer(forKey: "ReminderScheduledHour")
+            let minute = UserDefaults.standard.integer(forKey: "ReminderScheduledMinute")
+            let scheduledDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
+            let scheduledDateComponents = Calendar.current.dateComponents([.hour,.minute,.second,], from: scheduledDate)
+            return (true, scheduledDateComponents)
+
+        } else {
+            let defaultDate = Calendar.current.date(bySettingHour: 7, minute: 30, second: 0, of: Date())!
+            let defaultDateComponents = Calendar.current.dateComponents([.hour,.minute,.second,], from: defaultDate)
+            return (false, defaultDateComponents)
+        }
     }
 }

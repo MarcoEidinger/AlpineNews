@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,10 @@
 		8A0099D5242659540081E0EF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D4242659540081E0EF /* SettingsView.swift */; };
 		8A0099D7242696D40081E0EF /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */; };
 		8A0099D924269C1F0081E0EF /* ReminderLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D824269C1F0081E0EF /* ReminderLocalNotification.swift */; };
+		8A0099DC2427DEFF0081E0EF /* Diagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = 8A0099DB2427DEFF0081E0EF /* Diagnostics */; };
+		8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */; };
+		8A0099E02427E14A0081E0EF /* FeedbackSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */; };
+		8A0099E22427E48D0081E0EF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099E12427E48D0081E0EF /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,9 @@
 		8A0099D4242659540081E0EF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
 		8A0099D824269C1F0081E0EF /* ReminderLocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderLocalNotification.swift; sourceTree = "<group>"; };
+		8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailFeedbackView.swift; sourceTree = "<group>"; };
+		8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSettingsView.swift; sourceTree = "<group>"; };
+		8A0099E12427E48D0081E0EF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0099DC2427DEFF0081E0EF /* Diagnostics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +141,9 @@
 				8A0099D4242659540081E0EF /* SettingsView.swift */,
 				8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */,
 				8A0099D824269C1F0081E0EF /* ReminderLocalNotification.swift */,
+				8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */,
+				8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */,
+				8A0099E12427E48D0081E0EF /* Logger.swift */,
 			);
 			path = AlpineNews;
 			sourceTree = "<group>";
@@ -179,6 +190,9 @@
 			dependencies = (
 			);
 			name = AlpineNews;
+			packageProductDependencies = (
+				8A0099DB2427DEFF0081E0EF /* Diagnostics */,
+			);
 			productName = AlpineNews;
 			productReference = 8A0099952425A71F0081E0EF /* AlpineNews.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +265,9 @@
 				Base,
 			);
 			mainGroup = 8A00998C2425A71F0081E0EF;
+			packageReferences = (
+				8A0099DA2427DEFF0081E0EF /* XCRemoteSwiftPackageReference "Diagnostics" */,
+			);
 			productRefGroup = 8A0099962425A71F0081E0EF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -296,12 +313,15 @@
 			files = (
 				8A0099992425A71F0081E0EF /* AppDelegate.swift in Sources */,
 				8A0099D12425C3DD0081E0EF /* SimpleWebView.swift in Sources */,
+				8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */,
 				8A0099C92425A7BD0081E0EF /* ResourceListView.swift in Sources */,
 				8A0099D7242696D40081E0EF /* ReminderSettingsView.swift in Sources */,
 				8A0099CB2425A7D10081E0EF /* ResourceWebViewer.swift in Sources */,
+				8A0099E02427E14A0081E0EF /* FeedbackSettingsView.swift in Sources */,
 				8A00999B2425A71F0081E0EF /* SceneDelegate.swift in Sources */,
 				8A0099D924269C1F0081E0EF /* ReminderLocalNotification.swift in Sources */,
 				8A0099D5242659540081E0EF /* SettingsView.swift in Sources */,
+				8A0099E22427E48D0081E0EF /* Logger.swift in Sources */,
 				8A0099D3242648B10081E0EF /* ActivityView.swift in Sources */,
 				8A00999D2425A71F0081E0EF /* ContentView.swift in Sources */,
 				8A0099CD2425A7F90081E0EF /* DataModel.swift in Sources */,
@@ -630,6 +650,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A0099DA2427DEFF0081E0EF /* XCRemoteSwiftPackageReference "Diagnostics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeTransfer/Diagnostics";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A0099DB2427DEFF0081E0EF /* Diagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A0099DA2427DEFF0081E0EF /* XCRemoteSwiftPackageReference "Diagnostics" */;
+			productName = Diagnostics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A00998D2425A71F0081E0EF /* Project object */;
 }
