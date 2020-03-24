@@ -17,8 +17,13 @@ public class WebViewStore: ObservableObject {
     }
   }
 
+private var defaultNavDelegate = WKNavigationDelegateImp()
+
   public init(webView: WKWebView = WKWebView()) {
     self.webView = webView
+    if self.webView.navigationDelegate == nil {
+        self.webView.navigationDelegate = defaultNavDelegate
+    }
     setupObservers()
   }
 
@@ -52,6 +57,19 @@ public class WebViewStore: ObservableObject {
       $0.invalidate()
     }
   }
+}
+
+class WKNavigationDelegateImp: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        Logger.log(error: error)
+    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        Logger.log(error: error)
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard let url = webView.url else { return }
+        Logger.trackVieWebSiteEvent(url)
+    }
 }
 
 /// A container for using a WKWebView in SwiftUI

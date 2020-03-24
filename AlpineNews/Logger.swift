@@ -23,4 +23,9 @@ struct Logger {
     static func trackEvent(_ eventName: String) {
         MSAnalytics.trackEvent(eventName)
     }
+
+    static func trackVieWebSiteEvent(_ resourceUrl: URL) {
+        MSAnalytics.trackEvent("View WebSite", withProperties: ["url":resourceUrl.absoluteString])
+        self.log(message: "View WebSite \(resourceUrl.absoluteString)")
+    }
 }
