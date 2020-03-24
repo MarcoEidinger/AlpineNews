@@ -19,7 +19,6 @@
 		8A0099CB2425A7D10081E0EF /* ResourceWebViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099CA2425A7D10081E0EF /* ResourceWebViewer.swift */; };
 		8A0099CD2425A7F90081E0EF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099CC2425A7F90081E0EF /* DataModel.swift */; };
 		8A0099CF2425AACE0081E0EF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099CE2425AACE0081E0EF /* WebView.swift */; };
-		8A0099D12425C3DD0081E0EF /* SimpleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D02425C3DD0081E0EF /* SimpleWebView.swift */; };
 		8A0099D3242648B10081E0EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D2242648B00081E0EF /* ActivityView.swift */; };
 		8A0099D5242659540081E0EF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D4242659540081E0EF /* SettingsView.swift */; };
 		8A0099D7242696D40081E0EF /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */; };
@@ -71,7 +70,6 @@
 		8A0099CA2425A7D10081E0EF /* ResourceWebViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceWebViewer.swift; sourceTree = "<group>"; };
 		8A0099CC2425A7F90081E0EF /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8A0099CE2425AACE0081E0EF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		8A0099D02425C3DD0081E0EF /* SimpleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWebView.swift; sourceTree = "<group>"; };
 		8A0099D2242648B00081E0EF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8A0099D4242659540081E0EF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				8A0099CA2425A7D10081E0EF /* ResourceWebViewer.swift */,
 				8A0099CC2425A7F90081E0EF /* DataModel.swift */,
 				8A0099CE2425AACE0081E0EF /* WebView.swift */,
-				8A0099D02425C3DD0081E0EF /* SimpleWebView.swift */,
 				8A0099D2242648B00081E0EF /* ActivityView.swift */,
 				8A0099D4242659540081E0EF /* SettingsView.swift */,
 				8A0099D6242696D40081E0EF /* ReminderSettingsView.swift */,
@@ -348,7 +345,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0099992425A71F0081E0EF /* AppDelegate.swift in Sources */,
-				8A0099D12425C3DD0081E0EF /* SimpleWebView.swift in Sources */,
 				8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */,
 				8A0099C92425A7BD0081E0EF /* ResourceListView.swift in Sources */,
 				8A0099D7242696D40081E0EF /* ReminderSettingsView.swift in Sources */,
