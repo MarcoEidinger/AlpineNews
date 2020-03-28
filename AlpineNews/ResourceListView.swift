@@ -35,6 +35,8 @@ struct ResourceListView: View {
             }
             .navigationBarTitle(title)
             .navigationBarItems(trailing: EditButton())
+
+            WelcomeView()
         }
     }
 
