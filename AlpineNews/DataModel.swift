@@ -15,13 +15,24 @@ enum ResourceCategory: String, CaseIterable {
 }
 
 protocol DataModelSaveAPI {
+    func add(resource: Resource, to category: ResourceCategory)
     func save(_ items: [Resource], for category: ResourceCategory)
 }
 
 final class DataModel: ObservableObject, DataModelSaveAPI {
-    @Published var newsResources: [Resource] = []
-    @Published var libaryResources: [Resource] = []
-    @Published var resources: [ResourceCategory:[Resource]] = [:]
+
+    @Published private(set) var newsResources: [Resource] = [] {
+        didSet {
+            self.updateCache(with: newsResources, for: .news)
+        }
+    }
+
+    @Published private(set) var libaryResources: [Resource] = [] {
+        didSet {
+            self.updateCache(with: libaryResources, for: .libary)
+        }
+    }
+    @Published private(set) var resources: [ResourceCategory:[Resource]] = [:]
     
     init() {
         newsResources = loadResources(for: .news)
@@ -65,15 +76,6 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
         return (self.loadResourcesFromDisk(category).isEmpty) ? self.loadOriginalResources(for: category) : self.loadResourcesFromDisk(category)
     }
     
-    private func loadOriginalResources(for category: ResourceCategory) -> [Resource] {
-        switch category {
-        case .news:
-            return DataModel.newsResourcesStatic
-        case .libary:
-            return DataModel.libaryResourcesStatic
-        }
-    }
-    
     func reset() {
         newsResources = DataModel.newsResourcesStatic
         libaryResources = DataModel.libaryResourcesStatic
@@ -86,7 +88,37 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
         }
     }
     
-    func loadResourcesFromDisk(_ category: ResourceCategory) -> [Resource] {
+    func save(_ items: [Resource], for category: ResourceCategory) {
+        switch category {
+        case .news:
+            self.newsResources = items
+        case .libary:
+            self.libaryResources = items
+        }
+
+        self.resources[category] = items
+    }
+
+    func add(resource: Resource, to category: ResourceCategory) {
+        if self.libaryResources.count > 0 {
+            self.libaryResources.append(resource)
+        } else {
+            var resources = self.loadResources(for: category)
+            resources.append(resource)
+            self.save(resources, for: category)
+        }
+    }
+
+    private func loadOriginalResources(for category: ResourceCategory) -> [Resource] {
+        switch category {
+        case .news:
+            return DataModel.newsResourcesStatic
+        case .libary:
+            return DataModel.libaryResourcesStatic
+        }
+    }
+
+    private func loadResourcesFromDisk(_ category: ResourceCategory) -> [Resource] {
         do {
             guard let originalData = UserDefaults.standard.data(forKey: category.rawValue) else { return [] }
             let decoder = JSONDecoder()
@@ -96,28 +128,16 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
             return []
         }
     }
-    
-    func save(_ items: [Resource], for category: ResourceCategory) {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(items)
 
-            UserDefaults.standard.set(data, forKey: category.rawValue)
-            
-            switch category {
-            case .news:
-                newsResources = items
-            case .libary:
-                libaryResources = items
-            }
-            
-        } catch {
-            Logger.log(message: "Unable to save resources (\(error))")
-        }
+    private func updateCache(with items: [Resource], for category: ResourceCategory) {
+
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(items)
+        UserDefaults.standard.set(data, forKey: category.rawValue)
     }
 }
 
-struct Resource: Identifiable, Codable {
+struct Resource: Identifiable, Codable, Hashable {
     var id: String {
         return name
     }

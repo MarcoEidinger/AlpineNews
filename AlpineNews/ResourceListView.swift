@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ResourceListView: View {
     let category: ResourceCategory
-    @Binding var resources: [Resource]
-    var saveAPI: DataModelSaveAPI
+    @State var resources: [Resource]
+    var dataAPI: DataModel
 
     private let title: String = "News"
     @State private var selection: Int? = nil
@@ -24,11 +24,14 @@ struct ResourceListView: View {
                         if item.image != nil {
                             item.image?.resizable().frame(width: 32, height: 32, alignment: .center).fixedSize()
                         }
-                        NavigationLink(item.name, destination: ResourceWebViewer(url: item.url))
+                        NavigationLink(item.name, destination: ResourceWebViewer(url: item.url, saveAPI: self.dataAPI))
                     }
                 }
                 .onMove(perform: move)
                 .onDelete(perform: delete)
+            }
+            .onAppear() {
+                self.resources = self.dataAPI.loadResources(for: self.category)
             }
             .navigationBarTitle(title)
             .navigationBarItems(trailing: EditButton())
@@ -37,19 +40,19 @@ struct ResourceListView: View {
 
     func move(from source: IndexSet, to destination: Int) {
         resources.move(fromOffsets: source, toOffset: destination)
-        saveAPI.save(resources, for: category)
+        dataAPI.save(resources, for: category)
     }
 
     func delete(at offsets: IndexSet) {
         resources.remove(atOffsets: offsets)
-        saveAPI.save(resources, for: category)
+        dataAPI.save(resources, for: category)
     }
 }
 
 struct ResourceListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ResourceListView(category: .news, resources: .constant(DataModel.newsResourcesStatic), saveAPI: DataModel())
+            ResourceListView(category: .news, resources: DataModel.newsResourcesStatic, dataAPI: DataModel())
               .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
               .previewDisplayName("iPhone SE")
 

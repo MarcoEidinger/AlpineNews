@@ -7,17 +7,20 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import UIKit
 
 struct ActivityView: UIViewControllerRepresentable {
     var url: String
+    var title: String?
+    var saveAPI: DataModelSaveAPI
     @Binding var showing: Bool
 
     func makeUIViewController(context: Context) -> UIActivityViewController {
+        let act: UIActivity = AddToAppLibraryActivity(saveAPI: saveAPI)
+        let actItem = AddToAppLibraryItem(url: URL(string: url)!, title: title)
         let vc = UIActivityViewController(
-            activityItems: [NSURL(string: url)!],
-            applicationActivities: nil
+            activityItems: [NSURL(string: url)!, actItem],
+            applicationActivities: [act]
         )
         vc.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
             self.showing = false
@@ -41,7 +44,7 @@ struct TestUIActivityView: View {
                     Text("Open Activity View")
                 }
                 .sheet(isPresented: $showSheet) {
-                    ActivityView(url: "https://www.wikipedia.org", showing: self.$showSheet)
+                    ActivityView(url: "https://www.wikipedia.org", saveAPI: DataModel(), showing: self.$showSheet)
                 }
             }
         }

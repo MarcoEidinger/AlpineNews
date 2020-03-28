@@ -15,7 +15,7 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection) {
-            ResourceListView(category: .news, resources: $dataModel.newsResources, saveAPI: dataModel as DataModelSaveAPI)
+            ResourceListView(category: .news, resources: dataModel.newsResources, dataAPI: dataModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "tray")
@@ -23,7 +23,7 @@ struct ContentView: View {
                     }
                 }
                 .tag(0)
-            ResourceListView(category: .libary, resources: $dataModel.libaryResources, saveAPI: dataModel as DataModelSaveAPI)
+            ResourceListView(category: .libary, resources: dataModel.libaryResources, dataAPI: dataModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "book")
@@ -45,8 +45,19 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(DataModel())
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-            .previewDisplayName("iPhone SE")
+
+        Group {
+            ContentView().environmentObject(DataModel())
+
+            ContentView()
+                .environmentObject(DataModel())
+                .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+
+            ContentView()
+                .environmentObject(DataModel())
+                .environment(\.colorScheme, .dark)
+        }
+        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+        .previewDisplayName("iPhone SE")
     }
 }

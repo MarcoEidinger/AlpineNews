@@ -32,6 +32,7 @@
 		8A92670124291B66003B47E5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9266FC24291B66003B47E5 /* README.md */; };
 		8A92670224291B66003B47E5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */; };
 		8A92670324291B66003B47E5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FE24291B66003B47E5 /* AppCenter.framework */; };
+		8AA16070242C041600AD65C7 /* AddToAppLibraryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		8A9266FC24291B66003B47E5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		8A9266FE24291B66003B47E5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
+		8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToAppLibraryActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */,
 				8A0099DD2427DFC10081E0EF /* MailFeedbackView.swift */,
 				8A0099E12427E48D0081E0EF /* Logger.swift */,
+				8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */,
 			);
 			path = AlpineNews;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA16070242C041600AD65C7 /* AddToAppLibraryActivity.swift in Sources */,
 				8A0099992425A71F0081E0EF /* AppDelegate.swift in Sources */,
 				8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */,
 				8A0099C92425A7BD0081E0EF /* ResourceListView.swift in Sources */,

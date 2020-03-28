@@ -11,7 +11,10 @@ import SwiftUI
 struct ResourceWebViewer: View {
     @ObservedObject var webViewStore = WebViewStore()
     let url: URL
-    @State var showActivitySheet = false
+    @State private var showActivitySheet = false
+    var saveAPI: DataModelSaveAPI
+    @State private var showModal = false
+
     var body: some View {
 
         WebView(webView: webViewStore.webView)
@@ -32,7 +35,7 @@ struct ResourceWebViewer: View {
                         .accessibility(label: Text("Share"))
                 }
                 .sheet(isPresented: $showActivitySheet) {
-                    ActivityView(url: self.webViewStore.webView.url?.absoluteString ?? self.url.absoluteString, showing: self.$showActivitySheet)
+                    ActivityView(url: self.webViewStore.webView.url?.absoluteString ?? self.url.absoluteString, title: self.webViewStore.webView.title, saveAPI: self.saveAPI, showing: self.$showActivitySheet)
                 }
                 .padding()
             })
@@ -67,6 +70,6 @@ struct ResourceWebViewer: View {
 
 struct NewsWebDetails_Previews: PreviewProvider {
     static var previews: some View {
-        ResourceWebViewer(url: URL(string: "https://www.google.com")!)
+        ResourceWebViewer(url: URL(string: "https://www.google.com")!, saveAPI: DataModel())
     }
 }
