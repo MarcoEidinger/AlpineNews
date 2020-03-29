@@ -66,7 +66,7 @@ class AddToAppLibraryActivity: UIActivity {
     override func perform() {
         print(self.itemToAdd.debugDescription)
         var resource = Resource(name: self.itemToAdd?.title ?? "Dummy", url: self.itemToAdd!.url)
-        saveAPI.add(resource: resource, to: .libary)
+        saveAPI.add(resource: resource, to: .library)
         self.activityDidFinish(true)
     }
 }

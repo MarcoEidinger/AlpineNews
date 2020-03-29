@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "news": [
+      {
+        "name": "Apple Developer - News",
+        "url": "https://developer.apple.com/news/"
+      },
+      {
+        "name": "Apple Developer - Releases",
+        "url": "https://developer.apple.com/news/releases/"
+      },
+      {
+        "name": "Swift.org - Blog",
+        "url": "https://swift.org/blog/"
+      },
+      {
+        "name": "Github - Trending Swift",
+        "url": "https://github.com/trending/swift?since=daily"
+      },
+      {
+        "name": "HackingWithSwift",
+        "url": "https://www.hackingwithswift.com/articles"
+      },
+      {
+        "name": "Ray Wenderlich",
+        "url": "https://www.raywenderlich.com/library?domain_ids%5B%5D=1"
+      },
+      {
+        "name": "Swift by Sundell",
+        "url": "https://www.swiftbysundell.com/latest/"
+      },
+      {
+        "name": "Use Your Loaf",
+        "url": "https://useyourloaf.com/blog/"
+      },
+      {
+        "name": "Twitter - SwiftUI",
+        "url": "https://twitter.com/search?q=swiftui&src=typed_query"
+      },
+      {
+        "name": "Mac Rumors",
+        "url": "https://www.macrumors.com/"
+      },
+      {
+        "name": "iOS Dev Weekly",
+        "url": "https://iosdevweekly.com/"
+      },
+      {
+        "name": "NSHipster",
+        "url": "https://nshipster.com/"
+      }
+    ],
+    "library": [
+      {
+        "name": "All about SwiftUI",
+        "url": "https://juanpe.github.io/About-SwiftUI/"
+      },
+      {
+        "name": "Using Combine",
+        "url": "https://heckj.github.io/swiftui-notes/"
+      },
+      {
+        "name": "Swift Language Guide",
+        "url": "https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html"
+      },
+      {
+        "name": "iOS architecture",
+        "url": "https://github.com/onmyway133/fantastic-ios-architecture"
+      }
+    ]
+  }
+}

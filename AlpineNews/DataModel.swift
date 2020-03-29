@@ -9,9 +9,18 @@
 import Combine
 import SwiftUI
 
+private struct FileData: Decodable {
+    var categories: CategoriesData
+}
+
+private struct CategoriesData: Decodable {
+    var news: [Resource]
+    var library: [Resource]
+}
+
 enum ResourceCategory: String, CaseIterable {
     case news = "news-resourceCategory"
-    case libary = "library-resourceCategory"
+    case library = "library-resourceCategory"
 }
 
 protocol DataModelSaveAPI {
@@ -29,45 +38,36 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
 
     @Published private(set) var libaryResources: [Resource] = [] {
         didSet {
-            self.updateCache(with: libaryResources, for: .libary)
+            self.updateCache(with: libaryResources, for: .library)
         }
     }
     @Published private(set) var resources: [ResourceCategory:[Resource]] = [:]
     
     init() {
         newsResources = loadResources(for: .news)
-        libaryResources = loadResources(for: .libary)
+        libaryResources = loadResources(for: .library)
         
         for category in ResourceCategory.allCases {
             resources[category] = loadResources(for: category)
         }
     }
+
+    static private func loadBundledResources() -> FileData {
+        let url = Bundle.main.url(forResource: "resources", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        return try! decoder.decode(FileData.self, from: data)
+    }
     
-    static let newsResourcesStatic = [
-        Resource(name: "Apple Developer - News", url: URL(string: "https://developer.apple.com/news/")!),
-        Resource(name: "Apple Developer - Releases", url: URL(string: "https://developer.apple.com/news/releases/")!),
-        Resource(name: "Swift.org - Blog", url: URL(string: "https://swift.org/blog/")!),
-        Resource(name: "HackingWithSwift", url: URL(string: "https://www.hackingwithswift.com/articles")!),
-        Resource(name: "Ray Wenderlich", url: URL(string: "https://www.raywenderlich.com/library?domain_ids%5B%5D=1")!),
-        Resource(name: "Swift by Sundell", url: URL(string: "https://www.swiftbysundell.com/latest/")!),
-        Resource(name: "Use Your Loaf", url: URL(string: "https://useyourloaf.com/blog/")!),
-        Resource(name: "Twitter - SwiftUI", url: URL(string: "https://twitter.com/search?q=swiftui&src=typed_query")!),
-        Resource(name: "Mac Rumors", url: URL(string: "https://www.macrumors.com/")!),
-        Resource(name: "iOS Dev Weekly", url: URL(string: "https://iosdevweekly.com/")!),
-        Resource(name: "NSHipster", url: URL(string: "https://nshipster.com/")!)
-    ]
+    static let newsResourcesStatic: [Resource] = DataModel.loadBundledResources().categories.news
     
-    static let libaryResourcesStatic = [
-        Resource(name: "All about SwiftUI", url: URL(string: "https://juanpe.github.io/About-SwiftUI/")!),
-        Resource(name: "Using Combine", url: URL(string: "https://heckj.github.io/swiftui-notes/")!),
-        Resource(name: "Swift Language Guide", url: URL(string: "https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html")!)
-    ]
+    static let libaryResourcesStatic = DataModel.loadBundledResources().categories.library
     
     static func title(for category: ResourceCategory) -> String {
         switch category {
         case .news:
             return "News"
-        case .libary:
+        case .library:
             return "Libary"
         }
     }
@@ -81,7 +81,7 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
         libaryResources = DataModel.libaryResourcesStatic
         
         resources[.news] = newsResources
-        resources[.libary] = libaryResources
+        resources[.library] = libaryResources
         
         for category in ResourceCategory.allCases {
             save(resources[category]!, for: category)
@@ -92,7 +92,7 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
         switch category {
         case .news:
             self.newsResources = items
-        case .libary:
+        case .library:
             self.libaryResources = items
         }
 
@@ -113,7 +113,7 @@ final class DataModel: ObservableObject, DataModelSaveAPI {
         switch category {
         case .news:
             return DataModel.newsResourcesStatic
-        case .libary:
+        case .library:
             return DataModel.libaryResourcesStatic
         }
     }

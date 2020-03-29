@@ -28,6 +28,7 @@
 		8A0099E02427E14A0081E0EF /* FeedbackSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */; };
 		8A0099E22427E48D0081E0EF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0099E12427E48D0081E0EF /* Logger.swift */; };
 		8A75D7B0243006C9002B8859 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A75D7AF243006C9002B8859 /* WelcomeView.swift */; };
+		8A75D7B224301DFC002B8859 /* resources.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A75D7B124301DFC002B8859 /* resources.json */; };
 		8A9266FF24291B66003B47E5 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FA24291B66003B47E5 /* AppCenterCrashes.framework */; };
 		8A92670024291B66003B47E5 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9266FB24291B66003B47E5 /* CHANGELOG.md */; };
 		8A92670124291B66003B47E5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9266FC24291B66003B47E5 /* README.md */; };
@@ -80,6 +81,7 @@
 		8A0099DF2427E14A0081E0EF /* FeedbackSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSettingsView.swift; sourceTree = "<group>"; };
 		8A0099E12427E48D0081E0EF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		8A75D7AF243006C9002B8859 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		8A75D7B124301DFC002B8859 /* resources.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = resources.json; sourceTree = "<group>"; };
 		8A9266FA24291B66003B47E5 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		8A9266FB24291B66003B47E5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		8A9266FC24291B66003B47E5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				8A0099E12427E48D0081E0EF /* Logger.swift */,
 				8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */,
 				8A75D7AF243006C9002B8859 /* WelcomeView.swift */,
+				8A75D7B124301DFC002B8859 /* resources.json */,
 			);
 			path = AlpineNews;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				8A0099A52425A7210081E0EF /* LaunchScreen.storyboard in Resources */,
 				8A0099A22425A7210081E0EF /* Preview Assets.xcassets in Resources */,
 				8A92670124291B66003B47E5 /* README.md in Resources */,
+				8A75D7B224301DFC002B8859 /* resources.json in Resources */,
 				8A00999F2425A7210081E0EF /* Assets.xcassets in Resources */,
 				8A92670024291B66003B47E5 /* CHANGELOG.md in Resources */,
 			);

@@ -23,11 +23,11 @@ struct ContentView: View {
                     }
                 }
                 .tag(0)
-            ResourceListView(category: .libary, resources: dataModel.libaryResources, dataAPI: dataModel)
+            ResourceListView(category: .library, resources: dataModel.libaryResources, dataAPI: dataModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "book")
-                        Text(DataModel.title(for: .libary))
+                        Text(DataModel.title(for: .library))
                     }
                 }
                 .tag(1)
