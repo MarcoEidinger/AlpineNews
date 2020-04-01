@@ -11,14 +11,16 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var dataModel: DataModel
     @State private var showingAlert: Bool = false
+    private let reminderApi = ReminderLocalNotification()
     var body: some View {
         NavigationView {
             Form {
-                ReminderSettingsView()
+                ReminderSettingsView(reminderApi: reminderApi)
                 FeedbackSettingsView()
                 Section {
                     Button(action: {
                         self.dataModel.reset()
+                        self.reminderApi.deleteScheduledReminder()
                         self.showingAlert.toggle()
                     }) {
                         HStack {

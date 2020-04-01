@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReminderSettingsView: View {
 
-    @State var isReminderOn: Bool = false
+    @ObservedObject var reminderApi: ReminderLocalNotification
 
     @State var selectedDate = Calendar.current.date(bySettingHour: 7, minute: 30, second: 0, of: Date())!
 
@@ -20,52 +20,57 @@ struct ReminderSettingsView: View {
         return min...max
     }
 
-    private let reminderApi = ReminderLocalNotification()
-
     private var dateProxy:Binding<Date> {
-          Binding<Date>(get: {self.selectedDate }, set: {
-              self.selectedDate = $0
-            self.reminderApi.scheduleNotification(for: self.selectedDate)
-          })
-      }
+        Binding<Date>(
+            get: {
+                self.selectedDate
+
+        },
+            set: {
+                self.selectedDate = $0
+                self.reminderApi.scheduleNotification(for: self.selectedDate)
+        }
+        )
+    }
 
     var body: some View {
-            Section(header: Text("Reminder")) {
-                Toggle(isOn: $isReminderOn) {
-                    Text("Remind me to read the news")
-                }
-                .onTapGesture {
-                    let isReminderOn = !self.isReminderOn
-                    if isReminderOn {
-                        self.reminderApi
+        Section(header: Text("Reminder")) {
+            Toggle(isOn: $reminderApi.currentReminderExists) {
+                Text("Remind me to read the news")
+            }
+            .onTapGesture {
+                let isReminderOn = !self.reminderApi.currentReminderExists
+                if isReminderOn {
+                    self.reminderApi
                         .requestAuthorization()
 
-                        self.reminderApi
-                            .scheduleNotification(for: self.selectedDate)
-                    } else {
-                        self.reminderApi.deleteScheduledReminder()
-                    }
-                }
-                if self.isReminderOn == true {
-                    DatePicker(
-                        selection: dateProxy,
-                        in: dateClosedRange,
-                        displayedComponents: .hourAndMinute,
-                        label: { Text("Time to remind") }
-                    )
+                    self.reminderApi
+                        .scheduleNotification(for: self.selectedDate)
+                } else {
+                    self.reminderApi.deleteScheduledReminder()
                 }
             }
-            .onAppear() {
-                self.isReminderOn = ReminderLocalNotification.currentReminder().0
-
-                self.selectedDate = Calendar.current.date(bySettingHour: ReminderLocalNotification.currentReminder().1.hour!, minute: ReminderLocalNotification.currentReminder().1.minute!, second: 0, of: Date())!
+            if self.reminderApi.currentReminderExists == true {
+                DatePicker(
+                    selection: dateProxy,
+                    in: dateClosedRange,
+                    displayedComponents: .hourAndMinute,
+                    label: { Text("Time to remind") }
+                )
+            }
+        }
+        .onAppear() {
+            guard let scheduledReminderDate = self.reminderApi.scheduledReminderDate else {
+                return
+            }
+            self.selectedDate = scheduledReminderDate
         }
     }
 }
 
 struct ReminderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderSettingsView()
+        ReminderSettingsView(reminderApi: ReminderLocalNotification())
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
             .previewDisplayName("iPhone SE")
     }

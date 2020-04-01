@@ -7,12 +7,30 @@
 //
 
 import Foundation
+import Combine
 import UserNotifications
 
-struct ReminderLocalNotification {
-    let reminderNotificationID: String = "Yoo"
+class ReminderLocalNotification: ObservableObject {
+    private let reminderNotificationID: String = "Yoo"
 
-    let notificationCenter = UNUserNotificationCenter.current()
+    private let notificationCenter = UNUserNotificationCenter.current()
+
+    @Published var currentReminderExists = false
+    @Published var scheduledReminderDate: Date? =  nil
+
+    init() {
+        let isScheduled = UserDefaults.standard.bool(forKey: "ReminderScheduled")
+
+        if isScheduled {
+
+            let hour = UserDefaults.standard.integer(forKey: "ReminderScheduledHour")
+            let minute = UserDefaults.standard.integer(forKey: "ReminderScheduledMinute")
+            let scheduledDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
+
+            self.scheduledReminderDate = scheduledDate
+            self.currentReminderExists = true
+        }
+    }
 
     func requestAuthorization() {
         let options: UNAuthorizationOptions = [.alert, .sound]
@@ -32,8 +50,6 @@ struct ReminderLocalNotification {
 
     func scheduleNotification(for date: Date) {
 
-        self.deleteScheduledReminder()
-
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = "Time to check for news about Swift, iOS and Apple 😀 👍"
@@ -52,6 +68,11 @@ struct ReminderLocalNotification {
                 UserDefaults.standard.removeObject(forKey: "ReminderScheduledHour")
                 UserDefaults.standard.removeObject(forKey: "ReminderScheduledMinute")
             }
+
+            DispatchQueue.main.async {
+                self.scheduledReminderDate = date
+                self.currentReminderExists = true
+            }
         }
 
         UserDefaults.standard.set(true, forKey: "ReminderScheduled")
@@ -67,22 +88,8 @@ struct ReminderLocalNotification {
         UserDefaults.standard.set(false, forKey: "ReminderScheduled")
         UserDefaults.standard.removeObject(forKey: "ReminderScheduledHour")
         UserDefaults.standard.removeObject(forKey: "ReminderScheduledMinute")
-    }
 
-    static func currentReminder() -> (Bool, DateComponents) {
-        let isScheduled = UserDefaults.standard.bool(forKey: "ReminderScheduled")
-
-        if isScheduled {
-            let hour = UserDefaults.standard.integer(forKey: "ReminderScheduledHour")
-            let minute = UserDefaults.standard.integer(forKey: "ReminderScheduledMinute")
-            let scheduledDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
-            let scheduledDateComponents = Calendar.current.dateComponents([.hour,.minute,.second,], from: scheduledDate)
-            return (true, scheduledDateComponents)
-
-        } else {
-            let defaultDate = Calendar.current.date(bySettingHour: 7, minute: 30, second: 0, of: Date())!
-            let defaultDateComponents = Calendar.current.dateComponents([.hour,.minute,.second,], from: defaultDate)
-            return (false, defaultDateComponents)
-        }
+        currentReminderExists = false
+        scheduledReminderDate = nil
     }
 }
