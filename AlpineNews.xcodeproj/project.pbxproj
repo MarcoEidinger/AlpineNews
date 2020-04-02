@@ -35,6 +35,7 @@
 		8A92670224291B66003B47E5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */; };
 		8A92670324291B66003B47E5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9266FE24291B66003B47E5 /* AppCenter.framework */; };
 		8AA16070242C041600AD65C7 /* AddToAppLibraryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */; };
+		8AD3F67824356E7300BB311F /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3F67724356E7300BB311F /* UserNotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		8A9266FD24291B66003B47E5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		8A9266FE24291B66003B47E5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToAppLibraryActivity.swift; sourceTree = "<group>"; };
+		8AD3F67124355C6000BB311F /* AlpineNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlpineNews.entitlements; sourceTree = "<group>"; };
+		8AD3F67724356E7300BB311F /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,7 @@
 		8A0099972425A71F0081E0EF /* AlpineNews */ = {
 			isa = PBXGroup;
 			children = (
+				8AD3F67124355C6000BB311F /* AlpineNews.entitlements */,
 				8A9266F824291B18003B47E5 /* Vendor */,
 				8A0099982425A71F0081E0EF /* AppDelegate.swift */,
 				8A00999A2425A71F0081E0EF /* SceneDelegate.swift */,
@@ -164,6 +168,7 @@
 				8AA1606F242C041600AD65C7 /* AddToAppLibraryActivity.swift */,
 				8A75D7AF243006C9002B8859 /* WelcomeView.swift */,
 				8A75D7B124301DFC002B8859 /* resources.json */,
+				8AD3F67724356E7300BB311F /* UserNotificationCenter.swift */,
 			);
 			path = AlpineNews;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				8A0099DE2427DFC10081E0EF /* MailFeedbackView.swift in Sources */,
 				8A0099C92425A7BD0081E0EF /* ResourceListView.swift in Sources */,
 				8A0099D7242696D40081E0EF /* ReminderSettingsView.swift in Sources */,
+				8AD3F67824356E7300BB311F /* UserNotificationCenter.swift in Sources */,
 				8A0099CB2425A7D10081E0EF /* ResourceWebViewer.swift in Sources */,
 				8A0099E02427E14A0081E0EF /* FeedbackSettingsView.swift in Sources */,
 				8A00999B2425A71F0081E0EF /* SceneDelegate.swift in Sources */,
@@ -534,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AlpineNews/AlpineNews.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"AlpineNews/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V66CC3AN6;
@@ -558,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AlpineNews/AlpineNews.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"AlpineNews/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V66CC3AN6;

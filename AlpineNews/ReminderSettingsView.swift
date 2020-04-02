@@ -12,6 +12,8 @@ struct ReminderSettingsView: View {
 
     @ObservedObject var reminderApi: ReminderLocalNotification
 
+    @ObservedObject private var userNotification = UserNotificationCenter.shared
+
     @State var selectedDate = Calendar.current.date(bySettingHour: 7, minute: 30, second: 0, of: Date())!
 
     var dateClosedRange: ClosedRange<Date> {
@@ -34,7 +36,7 @@ struct ReminderSettingsView: View {
     }
 
     var body: some View {
-        Section(header: Text("Reminder")) {
+        Section(header: Text((userNotification.notificationsAllowed) ? "Reminder" : "Reminder (allow notifications in iOS settings to be able to schedule a reminder!)")) {
             Toggle(isOn: $reminderApi.currentReminderExists) {
                 Text("Remind me to read the news")
             }
@@ -42,14 +44,12 @@ struct ReminderSettingsView: View {
                 let isReminderOn = !self.reminderApi.currentReminderExists
                 if isReminderOn {
                     self.reminderApi
-                        .requestAuthorization()
-
-                    self.reminderApi
                         .scheduleNotification(for: self.selectedDate)
                 } else {
                     self.reminderApi.deleteScheduledReminder()
                 }
             }
+            .disabled(!userNotification.notificationsAllowed)
             if self.reminderApi.currentReminderExists == true {
                 DatePicker(
                     selection: dateProxy,

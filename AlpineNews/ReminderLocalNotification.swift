@@ -32,22 +32,6 @@ class ReminderLocalNotification: ObservableObject {
         }
     }
 
-    func requestAuthorization() {
-        let options: UNAuthorizationOptions = [.alert, .sound]
-        notificationCenter.requestAuthorization(options: options) {
-            (didAllow, error) in
-            if !didAllow {
-                Logger.log(message: "User has declined notifications")
-            }
-        }
-
-        notificationCenter.getNotificationSettings { (settings) in
-          if settings.authorizationStatus != .authorized {
-            // Notifications not allowed
-          }
-        }
-    }
-
     func scheduleNotification(for date: Date) {
 
         let content = UNMutableNotificationContent()
