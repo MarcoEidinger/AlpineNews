@@ -58,15 +58,15 @@ class AddToAppLibraryActivity: UIActivity {
 
     override func prepare(withActivityItems activityItems: [Any]) {
         for case let item as AddToAppLibraryItem in activityItems {
-            self.itemToAdd = item
+            itemToAdd = item
             return
         }
     }
 
     override func perform() {
-        print(self.itemToAdd.debugDescription)
-        var resource = Resource(name: self.itemToAdd?.title ?? "Dummy", url: self.itemToAdd!.url)
+        print(itemToAdd.debugDescription)
+        var resource = Resource(name: itemToAdd?.title ?? "Dummy", url: itemToAdd!.url)
         saveAPI.add(resource: resource, to: .library)
-        self.activityDidFinish(true)
+        activityDidFinish(true)
     }
 }

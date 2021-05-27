@@ -15,10 +15,10 @@ struct ResourceListView: View {
 
     private let title: String = "News"
     @State private var selection: Int? = nil
-    
+
     var body: some View {
         NavigationView {
-            List {
+            List { // }(resources) { item in
                 ForEach(resources) { item in
                     HStack {
                         if item.image != nil {
@@ -30,7 +30,8 @@ struct ResourceListView: View {
                 .onMove(perform: move)
                 .onDelete(perform: delete)
             }
-            .onAppear() {
+            .onAppear {
+                // UITableView.appearance().backgroundColor = .clear
                 self.resources = self.dataAPI.loadResources(for: self.category)
             }
             .navigationBarTitle(title)
@@ -55,9 +56,8 @@ struct ResourceListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ResourceListView(category: .news, resources: DataModel.newsResourcesStatic, dataAPI: DataModel())
-              .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-              .previewDisplayName("iPhone SE")
-
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+                .previewDisplayName("iPhone SE")
         }
     }
 }

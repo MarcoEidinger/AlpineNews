@@ -6,12 +6,13 @@
 //  Copyright © 2020 Eidinger, Marco. All rights reserved.
 //
 
-import Foundation
-import Diagnostics
+import AppCenter
 import AppCenterAnalytics
+import AppCenterCrashes
+import Diagnostics
+import Foundation
 
 struct Logger {
-
     static func log(message: String) {
         DiagnosticsLogger.log(message: message)
     }
@@ -21,11 +22,11 @@ struct Logger {
     }
 
     static func trackEvent(_ eventName: String) {
-        MSAnalytics.trackEvent(eventName)
+        Analytics.trackEvent(eventName)
     }
 
     static func trackVieWebSiteEvent(_ resourceUrl: URL) {
-        MSAnalytics.trackEvent("View WebSite", withProperties: ["url":resourceUrl.absoluteString])
-        self.log(message: "View WebSite \(resourceUrl.absoluteString)")
+        Analytics.trackEvent("View WebSite", withProperties: ["url": resourceUrl.absoluteString])
+        log(message: "View WebSite \(resourceUrl.absoluteString)")
     }
 }

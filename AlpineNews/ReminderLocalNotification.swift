@@ -6,8 +6,8 @@
 //  Copyright © 2020 Eidinger, Marco. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 import UserNotifications
 
 class ReminderLocalNotification: ObservableObject {
@@ -16,38 +16,36 @@ class ReminderLocalNotification: ObservableObject {
     private let notificationCenter = UNUserNotificationCenter.current()
 
     @Published var currentReminderExists = false
-    @Published var scheduledReminderDate: Date? =  nil
+    @Published var scheduledReminderDate: Date? = nil
 
     init() {
         let isScheduled = UserDefaults.standard.bool(forKey: "ReminderScheduled")
 
         if isScheduled {
-
             let hour = UserDefaults.standard.integer(forKey: "ReminderScheduledHour")
             let minute = UserDefaults.standard.integer(forKey: "ReminderScheduledMinute")
             let scheduledDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
 
-            self.scheduledReminderDate = scheduledDate
-            self.currentReminderExists = true
+            scheduledReminderDate = scheduledDate
+            currentReminderExists = true
         }
     }
 
     func scheduleNotification(for date: Date) {
-
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = "Time to check for news about Swift, iOS and Apple 😀 👍"
         content.sound = UNNotificationSound.default
 
-        let triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: date)
+        let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
 
         let request = UNNotificationRequest(identifier: reminderNotificationID, content: content, trigger: trigger)
 
-        notificationCenter.add(request) { (error) in
+        notificationCenter.add(request) { error in
             if let error = error {
                 Logger.log(message: "Error when scheduling reminder \(error.localizedDescription)")
-                
+
                 UserDefaults.standard.set(false, forKey: "ReminderScheduled")
                 UserDefaults.standard.removeObject(forKey: "ReminderScheduledHour")
                 UserDefaults.standard.removeObject(forKey: "ReminderScheduledMinute")

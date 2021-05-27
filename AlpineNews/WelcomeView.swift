@@ -12,11 +12,11 @@ struct WelcomeView: View {
     var body: some View {
         VStack {
             Image("swift-large")
-            .resizable()
+                .resizable()
                 .frame(width: 64, height: 64)
-            .clipShape(Circle())
-            .shadow(radius: 10)
-            .overlay(Circle().stroke(Color.gray))
+                .clipShape(Circle())
+                .shadow(radius: 10)
+                .overlay(Circle().stroke(Color.gray))
 
             HStack(spacing: 20) {
                 Image(systemName: "tray")

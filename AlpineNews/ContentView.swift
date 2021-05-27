@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var selection = 0
 
     @EnvironmentObject var dataModel: DataModel
- 
+
     var body: some View {
         TabView(selection: $selection) {
             ResourceListView(category: .news, resources: dataModel.newsResources, dataAPI: dataModel)
@@ -32,20 +32,19 @@ struct ContentView: View {
                 }
                 .tag(1)
             SettingsView().environmentObject(dataModel)
-            .tabItem {
-                VStack {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                .tabItem {
+                    VStack {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
                 }
-            }
-            .tag(2)
+                .tag(2)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-
         Group {
             ContentView().environmentObject(DataModel())
 

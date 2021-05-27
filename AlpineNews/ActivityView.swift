@@ -15,21 +15,20 @@ struct ActivityView: UIViewControllerRepresentable {
     var saveAPI: DataModelSaveAPI
     @Binding var showing: Bool
 
-    func makeUIViewController(context: Context) -> UIActivityViewController {
+    func makeUIViewController(context _: Context) -> UIActivityViewController {
         let act: UIActivity = AddToAppLibraryActivity(saveAPI: saveAPI)
         let actItem = AddToAppLibraryItem(url: URL(string: url)!, title: title)
         let vc = UIActivityViewController(
             activityItems: [NSURL(string: url)!, actItem],
             applicationActivities: [act]
         )
-        vc.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+        vc.completionWithItemsHandler = { _, _, _, _ in
             self.showing = false
         }
         return vc
     }
 
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-    }
+    func updateUIViewController(_: UIActivityViewController, context _: Context) {}
 }
 
 struct TestUIActivityView: View {

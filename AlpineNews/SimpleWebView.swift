@@ -10,23 +10,23 @@ import SwiftUI
 import WebKit
 
 class WKNavigationDelegateImp: NSObject, WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    func webView(_: WKWebView, didFail _: WKNavigation!, withError error: Error) {
         Logger.log(error: error)
     }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+
+    func webView(_: WKWebView, didFailProvisionalNavigation _: WKNavigation!, withError error: Error) {
         Logger.log(error: error)
     }
 }
 
-struct SimpleWebView : UIViewRepresentable {
-
+struct SimpleWebView: UIViewRepresentable {
     let url: URL
     var delegate = WKNavigationDelegateImp()
 
     static var cache = [URL: WKWebView]()
     static var cacheTime = [URL: Date]()
 
-    func makeUIView(context: Context) -> WKWebView  {
+    func makeUIView(context _: Context) -> WKWebView {
         if let webView = SimpleWebView.cache[url] {
             if let cacheDate = SimpleWebView.cacheTime[url] {
                 let diffTime = Date().timeIntervalSince(cacheDate)
@@ -43,12 +43,11 @@ struct SimpleWebView : UIViewRepresentable {
 
         SimpleWebView.cache[url] = webView
         SimpleWebView.cacheTime[url] = Date()
-        
+
         return webView
     }
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {
+    func updateUIView(_ uiView: WKWebView, context _: Context) {
         uiView.load(URLRequest(url: url))
     }
-
 }

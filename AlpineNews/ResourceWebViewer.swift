@@ -16,9 +16,8 @@ struct ResourceWebViewer: View {
     @State private var showModal = false
 
     var body: some View {
-
         WebView(webView: webViewStore.webView)
-            .frame(height: UIScreen.main.bounds.height-120)
+            .frame(height: UIScreen.main.bounds.height - 120)
             .navigationBarItems(trailing: HStack {
                 Button(action: {
                     UIApplication.shared.open(self.webViewStore.webView.url ?? self.url, options: [:], completionHandler: nil)
@@ -41,7 +40,7 @@ struct ResourceWebViewer: View {
             })
             .onAppear {
                 self.webViewStore.webView.load(URLRequest(url: self.url))
-        }
+            }
 
         //        SimpleWebView(url: url)
         //            .frame(height: UIScreen.main.bounds.height-120)

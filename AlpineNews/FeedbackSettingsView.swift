@@ -6,11 +6,10 @@
 //  Copyright © 2020 Eidinger, Marco. All rights reserved.
 //
 
-import SwiftUI
 import MessageUI
+import SwiftUI
 
 struct FeedbackSettingsView: View {
-
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
 
@@ -37,7 +36,7 @@ struct FeedbackSettingsView: View {
 struct FeedbackSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         FeedbackSettingsView()
-        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-        .previewDisplayName("iPhone SE")
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+            .previewDisplayName("iPhone SE")
     }
 }

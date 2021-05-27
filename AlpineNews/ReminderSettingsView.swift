@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ReminderSettingsView: View {
-
     @ObservedObject var reminderApi: ReminderLocalNotification
 
     @ObservedObject private var userNotification = UserNotificationCenter.shared
@@ -19,24 +18,24 @@ struct ReminderSettingsView: View {
     var dateClosedRange: ClosedRange<Date> {
         let min = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         let max = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-        return min...max
+        return min ... max
     }
 
-    private var dateProxy:Binding<Date> {
+    private var dateProxy: Binding<Date> {
         Binding<Date>(
             get: {
                 self.selectedDate
 
-        },
+            },
             set: {
                 self.selectedDate = $0
                 self.reminderApi.scheduleNotification(for: self.selectedDate)
-        }
+            }
         )
     }
 
     var body: some View {
-        Section(header: Text((userNotification.notificationsAllowed) ? "Reminder" : "Reminder (allow notifications in iOS settings to be able to schedule a reminder!)")) {
+        Section(header: Text(userNotification.notificationsAllowed ? "Reminder" : "Reminder (allow notifications in iOS settings to be able to schedule a reminder!)")) {
             Toggle(isOn: $reminderApi.currentReminderExists) {
                 Text("Remind me to read the news")
             }
@@ -59,7 +58,7 @@ struct ReminderSettingsView: View {
                 )
             }
         }
-        .onAppear() {
+        .onAppear {
             guard let scheduledReminderDate = self.reminderApi.scheduledReminderDate else {
                 return
             }

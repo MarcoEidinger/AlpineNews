@@ -6,30 +6,30 @@
 //  Copyright © 2020 Eidinger, Marco. All rights reserved.
 //
 
+import Diagnostics
+import MessageUI
 import SwiftUI
 import UIKit
-import MessageUI
-import Diagnostics
 
 struct MailFeedbackView: UIViewControllerRepresentable {
-
     @Environment(\.presentationMode) var presentation
     @Binding var result: Result<MFMailComposeResult, Error>?
 
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-
         @Binding var presentation: PresentationMode
         @Binding var result: Result<MFMailComposeResult, Error>?
 
         init(presentation: Binding<PresentationMode>,
-             result: Binding<Result<MFMailComposeResult, Error>?>) {
+             result: Binding<Result<MFMailComposeResult, Error>?>)
+        {
             _presentation = presentation
             _result = result
         }
 
-        func mailComposeController(_ controller: MFMailComposeViewController,
+        func mailComposeController(_: MFMailComposeViewController,
                                    didFinishWith result: MFMailComposeResult,
-                                   error: Error?) {
+                                   error: Error?)
+        {
             defer {
                 $presentation.wrappedValue.dismiss()
             }
@@ -61,8 +61,6 @@ struct MailFeedbackView: UIViewControllerRepresentable {
         return vc
     }
 
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController,
-                                context: UIViewControllerRepresentableContext<MailFeedbackView>) {
-
-    }
+    func updateUIViewController(_: MFMailComposeViewController,
+                                context _: UIViewControllerRepresentableContext<MailFeedbackView>) {}
 }
